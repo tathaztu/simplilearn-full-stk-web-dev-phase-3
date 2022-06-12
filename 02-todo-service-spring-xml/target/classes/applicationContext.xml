@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Name is the name of the interface with the first letter in lower-case -->
+	<!-- Class is the fully qualified class name of the Implementing class -->
+    <bean name="todoRepository" class="com.simplilearn.workshop.repository.TodoRepositoryImpl">  
+        <!-- collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="todoService" class="com.simplilearn.workshop.service.TodoServiceImpl" autowire="byName">
+        <!-- Depends on TodoRepository -->
+        <!-- ref is what was configured in this XML - earlier step -->
+        <!-- name is what was configured in the Impl Class - earlier step -->
+        <!-- <property name="repositoryImpl" ref="todoRepository"></property> -->
+        
+        
+<!--         <constructor-arg name="repositoryImpl" ref="todoRepository"></constructor-arg>
+ -->
+ 
+         
+    </bean>
+
+    <!-- more bean definitions go here -->
+
+</beans>
