@@ -1,5 +1,6 @@
 package com.simplilearn.workshop.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,8 +28,8 @@ public class Purchase {
 	@Column(name = "GROSS_TOTAL")
 	private float flGrossTotal;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<PurchaseItem> listPurchasedItems;
+	@OneToMany(mappedBy = "purchase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<PurchaseItem> listPurchasedItems = new ArrayList<>();
 
 	public Purchase() {}
 
@@ -62,4 +63,27 @@ public class Purchase {
 	public void setFlGrossTotal(float flGrossTotal) {
 		this.flGrossTotal = flGrossTotal;
 	}
+
+	public List<PurchaseItem> getListPurchasedItems() {
+		return listPurchasedItems;
+	}
+
+	public void setListPurchasedItems(List<PurchaseItem> listPurchasedItems) {
+		this.listPurchasedItems = listPurchasedItems;
+
+		this.listPurchasedItems.stream().forEach(e -> e.setPurchase(this));
+//		if(null != this.listPurchasedItems) {
+//			for(PurchaseItem purchaseItem : this.listPurchasedItems) {
+//				purchaseItem.setPurchase(this);
+//			}
+//		}
+	}
+
+//	@Override
+//	public String toString() {
+//		return "Purchase [longPurchaseId=" + longPurchaseId + ", strUserId=" + strUserId + ", flGrossTotal="
+//				+ flGrossTotal + ", listPurchasedItems=" + listPurchasedItems + "]";
+//	}
+
+
 }

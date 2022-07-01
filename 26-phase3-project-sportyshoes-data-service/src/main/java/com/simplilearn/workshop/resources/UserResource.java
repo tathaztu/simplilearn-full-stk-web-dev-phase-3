@@ -33,7 +33,6 @@ public class UserResource {
 
 	@GetMapping("/user/find/byEmail/{strEmail}")
 	public User getUserByEmail(@PathVariable("strEmail") String strEmail) {
-		System.out.println(strEmail);
 		return userServiceIF.getUserByEmail(strEmail);
 	}
 
